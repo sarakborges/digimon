@@ -1,14 +1,13 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
+
+import { AuthedLayout } from '@/Components/Layouts'
 
 import * as Styled from './Home.style'
 
 export const HomeTemplate: FC = () => {
   return (
-    <>
-      <Styled.HomeTemplate>
-        <Link to="/wiki">Go to wiki</Link>
-      </Styled.HomeTemplate>
-    </>
+    <AuthedLayout>
+      <Styled.HomeTemplate></Styled.HomeTemplate>
+    </AuthedLayout>
   )
 }

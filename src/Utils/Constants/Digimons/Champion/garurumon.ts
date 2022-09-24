@@ -10,8 +10,8 @@ export const garurumon: DigimonProps = {
 
   evolvesInto: [
     {
-      id: `weregarurumon`,
-      digimon: `weregarurumon`
+      id: `wereGarurumon`,
+      digimon: `wereGarurumon`
     }
   ]
 }

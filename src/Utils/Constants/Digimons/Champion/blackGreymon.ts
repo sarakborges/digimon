@@ -10,8 +10,8 @@ export const blackGreymon: DigimonProps = {
 
   evolvesInto: [
     {
-      id: 'blackMetalgreymon',
-      digimon: 'blackMetalgreymon',
+      id: 'blackMetalGreymon',
+      digimon: 'blackMetalGreymon',
       conditions: [
         {
           type: 'data',

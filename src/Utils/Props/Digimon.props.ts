@@ -20,13 +20,16 @@ export type DigimonProps = {
   evolvesInto?: Array<DigimonEvolutionProps>
 }
 
-export type DigimonsListProps = Array<{
-  id: DigimonLevels
-  digimons: Array<{
-    id: string
-    name: string
+export type DigimonsListProps = {
+  type: 'attribute' | 'level' | 'all'
+  title?: string
+
+  list: Array<{
+    level?: DigimonLevels
+    attribute?: DigimonAttributes
+    subList: Array<DigimonProps>
   }>
-}>
+}
 
 export type DigimonEvolutionProps = {
   id: string

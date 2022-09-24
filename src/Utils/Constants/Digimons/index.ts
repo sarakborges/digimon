@@ -8,11 +8,11 @@ import { garurumon } from './Champion/garurumon'
 import { greymon } from './Champion/greymon'
 import { blackGreymon } from './Champion/blackGreymon'
 
-import { weregarurumon } from './Ultimate/weregarurumon'
-import { blackMetalgreymon } from './Ultimate/blackMetalgreymon'
+import { wereGarurumon } from './Ultimate/wereGarurumon'
+import { blackMetalGreymon } from './Ultimate/blackMetalGreymon'
 
 import { alphamon } from './Mega/alphamon'
-import { metalgarurumon } from './Mega/metalgarurumon'
+import { metalGarurumon } from './Mega/metalGarurumon'
 
 export const DIGIMONS_ROOKIES: Array<DigimonProps> = [
   { ...agumon },
@@ -26,39 +26,86 @@ export const DIGIMONS_CHAMPIONS: Array<DigimonProps> = [
   { ...blackGreymon }
 ]
 
-export const DIGIMONS_ULTIMATE: Array<DigimonProps> = [{ ...weregarurumon }]
+export const DIGIMONS_ULTIMATE: Array<DigimonProps> = [
+  { ...wereGarurumon },
+  { ...blackMetalGreymon }
+]
 
 export const DIGIMONS_MEGA: Array<DigimonProps> = [
   { ...alphamon },
-  { ...metalgarurumon },
-  { ...blackMetalgreymon }
+  { ...metalGarurumon }
 ]
 
-export const DIGIMONS_LIST: DigimonsListProps = [
-  {
-    id: 'rookie',
-    digimons: [...DIGIMONS_ROOKIES]
-  },
+export const DIGIMONS_BY_LEVELS: DigimonsListProps = {
+  type: 'level',
+  title: 'Digimons by level',
 
-  {
-    id: 'champion',
-    digimons: [...DIGIMONS_CHAMPIONS]
-  },
+  list: [
+    {
+      level: 'rookie',
+      subList: [...DIGIMONS_ROOKIES]
+    },
 
-  {
-    id: 'ultimate',
-    digimons: [...DIGIMONS_ULTIMATE]
-  },
+    {
+      level: 'champion',
+      subList: [...DIGIMONS_CHAMPIONS]
+    },
 
-  {
-    id: 'mega',
-    digimons: [...DIGIMONS_MEGA]
-  }
-]
+    {
+      level: 'ultimate',
+      subList: [...DIGIMONS_ULTIMATE]
+    },
 
-export const DIGIMONS_ALL: Array<DigimonProps> = [
-  ...DIGIMONS_ROOKIES,
-  ...DIGIMONS_CHAMPIONS,
-  ...DIGIMONS_ULTIMATE,
-  ...DIGIMONS_MEGA
-]
+    {
+      level: 'mega',
+      subList: [...DIGIMONS_MEGA]
+    }
+  ]
+}
+
+export const DIGIMONS_BY_ATTRIBUTE: DigimonsListProps = {
+  type: 'attribute',
+  title: 'Digimons by attribute',
+
+  list: [
+    {
+      attribute: 'vaccine',
+      subList: [{ ...agumon }, { ...greymon }, { ...alphamon }]
+    },
+
+    {
+      attribute: 'data',
+      subList: [
+        { ...gabumon },
+        { ...garurumon },
+        { ...wereGarurumon },
+        { ...metalGarurumon }
+      ]
+    },
+
+    {
+      attribute: 'virus',
+      subList: [
+        { ...blackGarurumon },
+        { ...blackGreymon },
+        { ...blackMetalGreymon }
+      ]
+    }
+  ]
+}
+
+export const DIGIMONS_ALL: DigimonsListProps = {
+  type: 'all',
+  title: 'All digimons',
+
+  list: [
+    {
+      subList: [
+        ...DIGIMONS_ROOKIES,
+        ...DIGIMONS_CHAMPIONS,
+        ...DIGIMONS_ULTIMATE,
+        ...DIGIMONS_MEGA
+      ]
+    }
+  ]
+}

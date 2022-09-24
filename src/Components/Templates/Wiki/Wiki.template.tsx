@@ -2,17 +2,19 @@ import { FC, useContext } from 'react'
 
 import { WikiContext } from '@/Contexts'
 
-import { WIKI_DIGIMON_NOT_FOUND, WIKI_NO_DIGIMON } from '@/Utils/Texts'
+import { WIKI_BREADCRUMBS, WIKI_DIGIMON_NOT_FOUND } from '@/Utils/Texts'
+import {
+  DIGIMONS_BY_LEVELS,
+  DIGIMONS_BY_ATTRIBUTE
+} from '@/Utils/Constants/Digimons'
 
+import { AuthedLayout } from '@/Components/Layouts'
 import { TextAtom } from '@/Components/Atoms'
 import {
-  WikiBreadcrumbsMolecule,
-  WikiDigimonMainInfoMolecule
+  WikiDigimonMainInfoMolecule,
+  WikiDigimonsListMolecule
 } from '@/Components/Molecules'
-import {
-  WikiSidebarOrganism,
-  WikiDigimonEvolutionsListOrganism
-} from '@/Components/Organisms'
+import { WikiDigimonEvolutionsListOrganism } from '@/Components/Organisms'
 
 import * as Styled from './Wiki.style'
 
@@ -22,42 +24,57 @@ export const WikiTemplate: FC = () => {
   } = useContext(WikiContext)
 
   return (
-    <Styled.WikiTemplate>
-      <WikiSidebarOrganism />
+    <AuthedLayout
+      breadcrumb={[
+        {
+          link: WIKI_BREADCRUMBS.WIKI.LINK,
+          text: WIKI_BREADCRUMBS.WIKI.TEXT
+        }
+      ]}
+    >
+      {digimonId && !digimonInfo && (
+        <>
+          <Styled.NoInfo>
+            <TextAtom fs="20px" fw={300}>
+              {WIKI_DIGIMON_NOT_FOUND}
+            </TextAtom>
+          </Styled.NoInfo>
+        </>
+      )}
 
-      <Styled.MainContent>
-        <WikiBreadcrumbsMolecule />
-
-        {digimonId && !digimonInfo && (
-          <>
-            <Styled.NoInfo>
-              <TextAtom fs="20px" fw={300}>
-                {WIKI_DIGIMON_NOT_FOUND}
+      {!digimonId && (
+        <Styled.NoInfo>
+          <details open>
+            <summary>
+              <TextAtom fs="20px" fw={500}>
+                Digimons by level
               </TextAtom>
-            </Styled.NoInfo>
-          </>
-        )}
+            </summary>
 
-        {!digimonId && (
-          <>
-            <Styled.NoInfo>
-              <TextAtom fs="20px" fw={300}>
-                {WIKI_NO_DIGIMON}
+            <WikiDigimonsListMolecule digimonsList={DIGIMONS_BY_LEVELS} />
+          </details>
+
+          <details open>
+            <summary>
+              <TextAtom fs="20px" fw={500}>
+                Digimons by attribute
               </TextAtom>
-            </Styled.NoInfo>
-          </>
-        )}
+            </summary>
 
-        {digimonId && digimonInfo && (
-          <Styled.DigimonInfo>
-            <WikiDigimonMainInfoMolecule />
+            <WikiDigimonsListMolecule digimonsList={DIGIMONS_BY_ATTRIBUTE} />
+          </details>
+        </Styled.NoInfo>
+      )}
 
-            {digimonInfo.evolvesInto?.length && (
-              <WikiDigimonEvolutionsListOrganism />
-            )}
-          </Styled.DigimonInfo>
-        )}
-      </Styled.MainContent>
-    </Styled.WikiTemplate>
+      {digimonId && digimonInfo && (
+        <Styled.DigimonInfo>
+          <WikiDigimonMainInfoMolecule />
+
+          {!!digimonInfo.evolvesInto?.length && (
+            <WikiDigimonEvolutionsListOrganism />
+          )}
+        </Styled.DigimonInfo>
+      )}
+    </AuthedLayout>
   )
 }

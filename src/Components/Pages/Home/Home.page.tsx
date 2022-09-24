@@ -1,13 +1,20 @@
-import { FC } from 'react'
+import { FC, useContext, useEffect } from 'react'
 
-import { AuthedLayout } from '@/Components/Layouts'
+import { WikiContext } from '@/Contexts'
 
 import { HomeTemplate } from '@/Components/Templates'
 
 export const HomePage: FC = () => {
-  return (
-    <AuthedLayout>
-      <HomeTemplate />
-    </AuthedLayout>
-  )
+  const { wikiState, setWikiState } = useContext(WikiContext)
+
+  useEffect(() => {
+    setWikiState!({
+      ...wikiState,
+
+      digimonId: null,
+      digimonInfo: null
+    })
+  }, [])
+
+  return <HomeTemplate />
 }

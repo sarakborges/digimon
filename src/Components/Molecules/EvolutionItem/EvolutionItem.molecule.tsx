@@ -66,7 +66,7 @@ export const EvolutionItemMolecule: FC<{
             </TextAtom>
           </Styled.DigimonInfo>
 
-          {evolutionItem.conditions?.length && (
+          {!!evolutionItem.conditions?.length && (
             <Styled.EvolutionConditions>
               <TextAtom fw={500}>Requires</TextAtom>
 

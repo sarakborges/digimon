@@ -16,8 +16,6 @@ export const WikiSidebarOrganism: FC = () => {
             {WIKI_TITLE}
           </TextAtom>
         </li>
-
-        <WikiDigimonsListMolecule />
       </Styled.SidebarContent>
     </Styled.Sidebar>
   )

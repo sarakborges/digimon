@@ -1,20 +1,56 @@
 import styled from 'styled-components'
 
-export const WikiTemplate = styled.div`
-  display: flex;
-  flex: 1;
-`
-
-export const MainContent = styled.div`
+export const NoInfo = styled.div`
   display: flex;
   flex-flow: column;
-  flex: 1;
 
-  height: 100%;
-`
+  padding: 24px;
 
-export const NoInfo = styled.div`
-  padding: 32px;
+  > details {
+    > summary > p {
+      display: flex;
+      gap: 4px;
+
+      &:before {
+        content: '+';
+
+        display: flex;
+        place-content: center;
+        place-items: center;
+
+        width: 16px;
+      }
+    }
+
+    &[open] {
+      > summary > p {
+        display: flex;
+        gap: 4px;
+
+        &:before {
+          content: '-';
+
+          display: flex;
+          place-content: center;
+          place-items: center;
+
+          width: 16px;
+        }
+      }
+    }
+
+    > summary {
+      list-style-type: none;
+    }
+
+    &:not(:first-child) > summary {
+      padding-top: 16px;
+    }
+
+    &:not(:last-child) > div {
+      padding-bottom: 44px;
+    }
+  }
 `
 
 export const DigimonInfo = styled.div`

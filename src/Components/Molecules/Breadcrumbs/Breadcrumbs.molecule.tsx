@@ -7,9 +7,14 @@ import { WIKI_BACK_SECTION, WIKI_BREADCRUMBS } from '@/Utils/Texts'
 
 import { TextAtom } from '@/Components/Atoms'
 
-import * as Styled from './WikiBreadcrumbs.style'
+import * as Styled from './Breadcrumbs.style'
 
-export const WikiBreadcrumbsMolecule: FC = () => {
+export const BreadcrumbsMolecule: FC<{
+  breadcrumbItems?: Array<{
+    link: string
+    text: string
+  }>
+}> = ({ breadcrumbItems }) => {
   const {
     wikiState: { digimonId, digimonInfo }
   } = useContext(WikiContext)
@@ -23,13 +28,16 @@ export const WikiBreadcrumbsMolecule: FC = () => {
           </Link>
         </TextAtom>
 
-        <Styled.Spacer />
+        {!!breadcrumbItems?.length &&
+          breadcrumbItems.map((item) => (
+            <>
+              <Styled.Spacer />
 
-        <TextAtom fw={300}>
-          <Link to={WIKI_BREADCRUMBS.WIKI.LINK}>
-            {WIKI_BREADCRUMBS.WIKI.TEXT}
-          </Link>
-        </TextAtom>
+              <TextAtom fw={300}>
+                <Link to={item.link}>{item.text}</Link>
+              </TextAtom>
+            </>
+          ))}
 
         {digimonId && digimonInfo && (
           <>

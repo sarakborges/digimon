@@ -19,11 +19,12 @@ export const WikiDigimonEvolutionsListOrganism: FC = () => {
   } = useContext(WikiContext)
 
   const evolutions: undefined | Array<WikiDigimonEvolutionsListProps> =
-    digimonInfo?.evolvesInto?.length
+    !!digimonInfo?.evolvesInto?.length
       ? digimonInfo.evolvesInto.map((evolutionItem) => {
-          const digimonInfo: DigimonProps | undefined = DIGIMONS_ALL.find(
-            (digimonItem) => digimonItem.id === evolutionItem.digimon
-          )
+          const digimonInfo: DigimonProps | undefined =
+            DIGIMONS_ALL.list[0].subList.find(
+              (digimonItem) => digimonItem.id === evolutionItem.digimon
+            )
 
           return {
             ...evolutionItem,
@@ -36,7 +37,7 @@ export const WikiDigimonEvolutionsListOrganism: FC = () => {
     <>
       {digimonId && digimonInfo && (
         <>
-          {evolutions?.length && (
+          {!!evolutions?.length && (
             <Styled.EvolvesInto>
               <TextAtom fw={500}>{DIGIMON_INFO.EVOLVES_INTO}:</TextAtom>
 
