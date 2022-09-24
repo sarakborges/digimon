@@ -1,0 +1,13 @@
+{
+  "list": [
+    {
+      "id": "agumon",
+      "name": "Agumon"
+    },
+
+    {
+      "id": "gabumon",
+      "name": "Gabumon"
+    }
+  ]
+}

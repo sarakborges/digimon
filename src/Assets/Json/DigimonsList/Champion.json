@@ -1,0 +1,18 @@
+{
+  "list": [
+    {
+      "id": "greymon",
+      "name": "Greymon"
+    },
+
+    {
+      "id": "garurumon",
+      "name": "Garurumon"
+    },
+
+    {
+      "id": "black-garurumon",
+      "name": "Black Garurumon"
+    }
+  ]
+}
