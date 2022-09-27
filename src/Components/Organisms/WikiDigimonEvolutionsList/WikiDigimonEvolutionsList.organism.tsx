@@ -21,10 +21,9 @@ export const WikiDigimonEvolutionsListOrganism: FC = () => {
   const evolutions: undefined | Array<WikiDigimonEvolutionsListProps> =
     !!digimonInfo?.evolvesInto?.length
       ? digimonInfo.evolvesInto.map((evolutionItem) => {
-          const digimonInfo: DigimonProps | undefined =
-            DIGIMONS_ALL.list[0].subList.find(
-              (digimonItem) => digimonItem.id === evolutionItem.digimon
-            )
+          const digimonInfo: DigimonProps | undefined = DIGIMONS_ALL.find(
+            (digimonItem) => digimonItem.id === evolutionItem.digimon
+          )
 
           return {
             ...evolutionItem,

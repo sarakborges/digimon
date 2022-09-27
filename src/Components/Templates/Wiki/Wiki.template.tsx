@@ -4,8 +4,8 @@ import { WikiContext } from '@/Contexts'
 
 import { WIKI_BREADCRUMBS, WIKI_DIGIMON_NOT_FOUND } from '@/Utils/Texts'
 import {
-  DIGIMONS_BY_LEVELS,
-  DIGIMONS_BY_ATTRIBUTE
+  DIGIMONS_BY_LEVELS_LIST,
+  DIGIMONS_BY_ATTRIBUTE_LIST
 } from '@/Utils/Constants/Digimons'
 
 import { AuthedLayout } from '@/Components/Layouts'
@@ -44,25 +44,20 @@ export const WikiTemplate: FC = () => {
 
       {!digimonId && (
         <Styled.NoInfo>
-          <details open>
-            <summary>
-              <TextAtom fs="20px" fw={500}>
-                Digimons by level
-              </TextAtom>
-            </summary>
+          {[
+            { ...DIGIMONS_BY_LEVELS_LIST },
+            { ...DIGIMONS_BY_ATTRIBUTE_LIST }
+          ].map((listItem) => (
+            <details open>
+              <summary>
+                <TextAtom fs="20px" fw={500}>
+                  {listItem.title}
+                </TextAtom>
+              </summary>
 
-            <WikiDigimonsListMolecule digimonsList={DIGIMONS_BY_LEVELS} />
-          </details>
-
-          <details open>
-            <summary>
-              <TextAtom fs="20px" fw={500}>
-                Digimons by attribute
-              </TextAtom>
-            </summary>
-
-            <WikiDigimonsListMolecule digimonsList={DIGIMONS_BY_ATTRIBUTE} />
-          </details>
+              <WikiDigimonsListMolecule digimonsList={{ ...listItem }} />
+            </details>
+          ))}
         </Styled.NoInfo>
       )}
 
